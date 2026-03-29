@@ -21,5 +21,5 @@ if __name__ == "__main__":
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
 
     registry = build_registry()
-    agent = Agent("AIzaSyBrZFgAaxxqzEmoqVap2TLSUKU-KxBP53E", registry)
+    agent = Agent( api key, registry)
     agent.run()
