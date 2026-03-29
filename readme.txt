@@ -1,4 +1,3 @@
-# No-Code AI Agent (CLI) with Gemini API
 
 ## Overview
 This project implements a command-line AI agent using Python and the Gemini API.  
