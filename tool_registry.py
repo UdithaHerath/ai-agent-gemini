@@ -2,7 +2,7 @@ class ToolRegistry:
     def __init__(self):
         self.tools = {}
 
-    def register(self, name, tool):
+    def register_tool(self, name, tool):
         self.tools[name] = tool
 
     def execute(self, name, args):
@@ -15,3 +15,5 @@ class ToolRegistry:
 
     def has_tool(self, name):
         return name in self.tools
+    def get_tool(self, name):
+        return self.tools.get(name)

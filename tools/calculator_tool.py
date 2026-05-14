@@ -2,19 +2,21 @@ from base_tool import BaseTool
 
 
 class CalculatorTool(BaseTool):
-    def execute(self, args):
-        expression = args.get("expression", "").strip()
+    def execute(self, params):
+        try:
+            expression = params.get("expression")
+            if not expression:
+                return "Error: Missing expression"
 
-        if not expression:
-            raise ValueError("Missing 'expression'.")
+            result = eval(expression, {"__builtins__": {}}, {})
+            return str(result)
 
-        # Simple protection for assignment use
-        allowed_chars = "0123456789+-*/(). %"
-        if any(ch not in allowed_chars for ch in expression):
-            raise ValueError("Expression contains unsupported characters.")
+        except ZeroDivisionError:
+            return "Error: Division by zero"
 
-        return str(eval(expression, {"__builtins__": {}}, {}))
-
+        except Exception as e:
+            return f"Error: {str(e)}"
+    
     def get_declaration(self):
         return {
             "name": "calculator",

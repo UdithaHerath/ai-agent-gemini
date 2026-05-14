@@ -2,19 +2,21 @@ from base_tool import BaseTool
 
 
 class FileReaderTool(BaseTool):
-    def execute(self, args):
-        filename = args.get("filename", "").strip()
-
-        if not filename:
-            raise ValueError("Missing 'filename'.")
-
+    def execute(self, params):
         try:
-            with open(filename, "r", encoding="utf-8") as f:
+            filename = params.get("filename") or params.get("file_path")
+
+            if not filename:
+                return "Error: Missing filename"
+
+            with open(filename, "r") as f:
                 return f.read()
+
         except FileNotFoundError:
-            raise ValueError(f"File '{filename}' not found.")
+            return "Error: File not found"
+
         except Exception as e:
-            raise ValueError(f"Could not read file: {e}")
+            return f"Error: {str(e)}"
 
     def get_declaration(self):
         return {
