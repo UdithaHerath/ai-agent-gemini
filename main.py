@@ -19,7 +19,11 @@ def build_registry():
 
 if __name__ == "__main__":
     api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        raise SystemExit(
+            "No API key found. Set the GEMINI_API_KEY environment variable."
+        )
 
     registry = build_registry()
-    agent = Agent( "AIzaSyBrZFgAaxxqzEmoqVap2TLSUKU-KxBP53E", registry)
+    agent = Agent(api_key, registry)
     agent.run()
