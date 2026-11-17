@@ -135,7 +135,11 @@ pip install -r requirements.txt
 
 # Usage
 
-Before running the system, insert your Gemini API key inside `main.py`.
+Before running the system, set your Gemini API key as an environment variable:
+
+```bash
+export GEMINI_API_KEY="your-api-key"
+```
 
 Run the application:
 
